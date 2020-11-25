@@ -1,0 +1,32 @@
+language: node_js
+sudo: required
+node_js:
+  - 12.13.1
+cache:
+  directories:
+    - node_modules
+branches:
+  only:
+    - master
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+after_script:
+  - cd dist
+
+  - git init
+  - git branch docs
+  - git checkout docs
+
+  - git add .
+  - git commit -m "new posts. 😊😊😊😊"
+
+  - git config user.name "travis ci"
+  - git config user.email "alphabetion@gmail.com"
+
+  - git remote add origin https://0x30:${GITHUB_TOKEN}@github.com/0x30/0x30.github.io.git
+  - git push origin -f docs
