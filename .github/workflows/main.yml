@@ -36,7 +36,9 @@ jobs:
 
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
-        with:
+        with:  
           keep_history: true
           build_dir: dist
           jekyll: false # optional, default is true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
