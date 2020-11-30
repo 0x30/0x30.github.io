@@ -1,3 +1,52 @@
-.chat-room-button{
-  
+.chat-room {
+  width: 100%;
+  height: 100%;
+  color: white;
+  // background-color: black;
+  padding: 5px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: medium;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.line {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.input-body {
+  position: relative;
+  z-index: 2;
+
+  .promat {
+    float: left;
+  }
+
+  .input-wrap {
+    position: relative;
+    z-index: 2;
+
+    cursor: default;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .input-placeholder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+
+    color: gray;
+
+    word-wrap: break-word;
+  }
 }
