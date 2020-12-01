@@ -1,13 +1,9 @@
 import { defineComponent, onMounted, onUnmounted, PropType, ref } from "vue";
 import Style from "./index.module.scss";
 import { init, MESSAGE_TYPE } from "@rongcloud/imlib-v4";
-import xterm, { IDisposable, IEvent, Terminal } from "xterm";
-import xtermAddonFit from "xterm-addon-fit";
 
 import Lodash from "lodash";
-
 const { debounce } = Lodash;
-const { FitAddon } = xtermAddonFit;
 
 const logo = `
  █     █░▒███████▒
@@ -30,10 +26,6 @@ export const ChatRoom = defineComponent(() => {
   const inputValueRef = ref("$ ");
 
   const values = ref<String[]>([logo]);
-
-  const inputEvent = (event: Event) => {
-    inputValueRef.value = (event.target as any).innerText;
-  };
 
   const onPrompt = (val: string) => {
     values.value.push(val);
@@ -76,7 +68,7 @@ const InputBody = defineComponent({
       if (ev.keyCode === 13) {
         props.onPrompt(inputValueRef.value);
         inputValueRef.value = "";
-        inputRef.value.innerHTML = "";
+        (inputRef.value as any).innerHTML = "";
         ev.preventDefault();
       }
     };
